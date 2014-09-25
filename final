@@ -1,0 +1,78 @@
+// JavaScript Document
+
+window.onload = function()
+{
+	//setting variables
+	agreeScroll = document.getElementById("agreeScroll");
+	agree = document.getElementById("agree");
+	notAgree = document.getElementById("notagree");
+	submitAgreement = document.getElementById("submitAgreement");
+	objDiv = document.getElementById("agreeScroll");
+	
+	section1 = document.getElementById("section1");
+	section2 = document.getElementById("section2");
+	confirmation = document.getElementById("confirmation");
+	
+	var readDocuments = "Read the documents before proceeding";
+	
+	//checks used to test if all requirements are meet
+	var checked1 = false;
+	var checked2 = false;
+	var checked3 = false;
+	
+document1 = function() //function runs when document1 is clicked
+{
+	agreeLink1 = document.getElementById("agreeLink1");
+	console.log("document1"); //displays in the console that document1 was clicked
+	checked1 = true;
+}
+
+document2 = function() //function runs when document2 is clicked
+{
+	agreeLink2 = document.getElementById("agreeLink2");
+	console.log("document2"); //displays in the console that document1 was clicked
+	checked2 = true;
+}
+
+	
+	objDiv.addEventListener("scroll", function(){ //event listener that runs when objDiv is scroll
+	
+	if ( objDiv.scrollTop == (objDiv.scrollHeight-objDiv.offsetHeight) ) //if statement that checks if the scroll bar was scrolled completely.
+	{
+		checked3 = true;
+		agree.disabled = false; // agree radio button is enable
+		notAgree.disabled = false; // not agree radio button is enable
+	}
+	
+	});
+	
+	agree.onclick = function (){ //function runs when agree radio button is clicked
+	
+	if (checked1 == true && checked2 == true && checked3 == true) //if statement that checks if all requirements were met
+	{
+		submitAgreement.disabled = false; // continue button is enable
+		
+	}else if(checked1 == false || checked2 == false) // if neither of the two documents are checked, popup message is display
+	{
+		alert(readDocuments);
+		agree.checked = false; //radio buttons are reset
+		notAgree.checked = false;	
+	}
+	
+	submitAgreement.onclick = function(){ // function runs when continue button is clicked
+		
+		section1.hidden = true;
+		section2.hidden = true;
+		confirmation.style.visibility = "visible"; // confirmation div becomes visible
+		
+		}	
+	
+		
+}
+	
+	
+	
+	
+	
+	
+
